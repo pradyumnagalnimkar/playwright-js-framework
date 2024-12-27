@@ -19,12 +19,3 @@ test('Page fixture test', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
     console.log(await page.title())
 })
-
-test.only('Login page test', async ( {page} ) => {
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
-    await page.locator("#username").fill("rahulshettyacademy")
-    await page.locator("[name='password']").fill("Test123")
-    await page.locator("[type='submit']").click()
-    console.log(await page.locator("[style*='block']").textContent())
-    await expect(page.locator("[style*='block']")).toContainText("Incorrect username/password.")
-})
