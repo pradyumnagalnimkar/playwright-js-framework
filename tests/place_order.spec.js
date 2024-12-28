@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test")
 const { styleText } = require("util")
 
 
-test('Place order', async ({ page }) => {
+test.only('Place order', async ({ page }) => {
 
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
@@ -69,9 +69,28 @@ test('Place order', async ({ page }) => {
     await expect(page.locator(".hero-primary")).toContainText(" Thankyou for the order. ")
     const order_id = await page.locator(".em-spacer-1 .ng-star-inserted").textContent()
     console.log(`Order placed successfully! Order Id: ${order_id}`)
+
+    await page.locator("button[routerlink*='myorders']").click()
+    await page.waitForLoadState('networkidle')
+
+    const orders = page.locator("tbody tr")
+    await orders.first().waitFor()
+    const number_of_orders = await orders.count()
+    for(let i=0;i<number_of_orders;i++){
+        if(order_id.includes(await orders.nth(i).locator('th').textContent())){
+            await orders.nth(i).locator('text=View').click()
+            break
+        }
+    }
+
+    await expect(page.locator(".tagline")).toContainText('Thank you for Shopping With Us')
+    await expect(page.locator(".email-title")).toContainText(" order summary ")
+    const actualOrderId = await page.locator(".-main").textContent()
+    expect(order_id.includes(actualOrderId)).toBeTruthy()
+    await expect (page.locator(".artwork-card-info .title")).toContainText(product)
 })
 
-test.only('Check placed order details', async ({ page }) => {
+test('Check placed order details', async ({ page }) => {
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
 
