@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test")
 const { styleText } = require("util")
 
 
-test.only('Place order', async ({ page }) => {
+test('Place order', async ({ page }) => {
 
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
@@ -71,3 +71,38 @@ test.only('Place order', async ({ page }) => {
     console.log(`Order placed successfully! Order Id: ${order_id}`)
 })
 
+test.only('Check placed order details', async ({ page }) => {
+    let email = 'ruben.amorim+admin@gmail.com'
+    let password = "Test@12345678"
+
+    await page.goto("https://rahulshettyacademy.com/client/")
+    await page.locator("#userEmail").fill(email)
+    await page.locator("#userPassword").fill(password)
+    await page.locator("[value='Login']").click()
+    await expect(page.locator("#toast-container div div")).toContainText("Login Successfully")
+
+    /**
+     * 1. Search placed order orderId in orders page table
+     * 2. Once identified click on view details button
+     * 3. Check product name, product price, order summary, order id, billing address and shipping address
+     */
+
+    const orderId = '676eaa3ce2b5443b1f059754'
+    const product = 'qwerty'
+    await page.locator("[routerlink*='myorders']").click()
+    await page.waitForLoadState('networkidle')
+
+    const orders = page.locator("tbody tr")
+    const number_of_orders = await orders.count()
+    for(let i=0;i<number_of_orders;i++){
+        if(await orders.nth(i).locator('th').textContent() === orderId){
+            await orders.nth(i).locator('text=View').click()
+            break
+        }
+    }
+
+    await expect(page.locator(".tagline")).toContainText('Thank you for Shopping With Us')
+    await expect(page.locator(".email-title")).toContainText(" order summary ")
+    await expect(page.locator(".-main")).toContainText(orderId)
+    await expect (page.locator(".artwork-card-info .title")).toContainText(product)
+})
