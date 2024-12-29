@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test")
 
-test.only('Place order', async ({ page }) => {
+test('Place order', async ({ page }) => {
 
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
