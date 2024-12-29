@@ -27,7 +27,7 @@ test('handle multiple windows', async({ browser }) => {
     
 })
 
-test.only("handle frames", async ({ page }) => {
+test("handle frames", async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     const framePage = page.frameLocator("#courses-iframe")
     await framePage.locator("li a[href*='lifetime-access']:visible").click()
