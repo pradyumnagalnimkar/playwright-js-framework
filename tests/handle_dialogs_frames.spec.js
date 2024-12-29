@@ -26,3 +26,10 @@ test('handle multiple windows', async({ browser }) => {
     await expect(newPage.getByText("Access all our Courses")).toBeVisible()
     
 })
+
+test.only("handle frames", async ({ page }) => {
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+    const framePage = page.frameLocator("#courses-iframe")
+    await framePage.locator("li a[href*='lifetime-access']:visible").click()
+    console.log(await expect(framePage.locator(".text h2")).toContainText("13,522"))
+})
