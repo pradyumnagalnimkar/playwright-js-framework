@@ -1,7 +1,7 @@
 const { test } = require("@playwright/test")
 import readExcel, { writeExcel } from "../utils/excelUtils"
 
-test.only('Download File', async({ page }) => {
+test('Download File', async({ page }) => {
     const file_path = "/Users/pradyumna.galnimkar/Downloads/download.xlsx"
     await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html")
     const downloadPromise =  page.waitForEvent('download')
