@@ -1,5 +1,4 @@
 const { test, expect } = require("@playwright/test")
-const { styleText } = require("util")
 
 
 test('Place order', async ({ page }) => {
