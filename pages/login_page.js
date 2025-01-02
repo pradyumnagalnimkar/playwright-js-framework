@@ -1,6 +1,8 @@
-class LoginPage{
+const { CommonPage } = require("./common_page")
+class LoginPage extends CommonPage{
     
     constructor(page){
+        super(page)
         this.page = page
         this.email_textbox = this.page.getByPlaceholder("email@example.com")
         this.password_tetxbox = this.page.getByPlaceholder("enter your passsword")
