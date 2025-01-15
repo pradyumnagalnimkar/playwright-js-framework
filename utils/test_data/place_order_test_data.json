@@ -1,5 +1,17 @@
-{
-    "username": "ruben.amorim+admin@gmail.com",
-    "password": "Test@12345678",
-    "product": "qwerty"
-}
+[
+    {
+      "username": "ruben.amorim+admin@gmail.com",
+      "password": "Test@12345678",
+      "productName": "qwerty"
+    },
+    {
+      "username": "ruben.amorim+admin@gmail.com",
+      "password": "Test@12345678",
+      "productName": "IPHONE 13 PRO"
+    },
+    {
+      "username": "ruben.amorim+admin@gmail.com",
+      "password": "Test@12345678",
+      "productName": "Banarsi Saree"
+    }
+  ]
