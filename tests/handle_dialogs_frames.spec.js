@@ -1,5 +1,7 @@
 const { test, expect } = require("@playwright/test")
 
+test.describe.configure({mode: 'parallel'})
+// test.describe.configure({mode: 'serial'})
 test("Verify hidden elements", async({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     await page.locator("#hide-textbox").click()
