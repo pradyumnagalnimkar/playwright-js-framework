@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test")
 
 
-test('Place order', async ({ page }) => {
+test('@UI Place order', async ({ page }) => {
 
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
@@ -89,7 +89,7 @@ test('Place order', async ({ page }) => {
     await expect (page.locator(".artwork-card-info .title")).toContainText(product)
 })
 
-test('Check placed order details', async ({ page }) => {
+test('@UI Check placed order details', async ({ page }) => {
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"
 

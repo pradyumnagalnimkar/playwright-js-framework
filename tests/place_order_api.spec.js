@@ -27,7 +27,7 @@ test.beforeAll('Login to app via API before all', async() => {
     order_id = order_response_json.orders[0]
 })
 
-test('Login to app via API', async({ page }) => {
+test('@API Login to app via API', async({ page }) => {
     await page.addInitScript(value => {
         window.localStorage.setItem('token', value)
     }, token)

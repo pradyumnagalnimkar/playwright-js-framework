@@ -24,7 +24,7 @@ test('Register user', async({ browser }) => {
     await expect(page.locator("h1.headcolor")).toContainText("Account Created Successfully")
 })
 
-test('Login registered user', async({page}) => {
+test('@UI Login registered user', async({page}) => {
     
     let email = 'ruben.amorim+admin@gmail.com'
     let password = "Test@12345678"

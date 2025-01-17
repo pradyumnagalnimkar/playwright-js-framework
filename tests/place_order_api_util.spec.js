@@ -24,7 +24,7 @@ test.beforeAll("Integrating API Preconditions", async() => {
     order_id = await api_utils.placeOrderAPI("https://rahulshettyacademy.com/api/ecom/order/create-order", order_paylaod, token)
 })
 
-test.only("Place order", async({ page }) => {
+test("@API Place order", async({ page }) => {
 
     /**
      * Set token
