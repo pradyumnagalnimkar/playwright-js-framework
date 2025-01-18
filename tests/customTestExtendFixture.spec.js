@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test"
 import { PageFactory } from "../pages/page_factory"
 import { customTest } from "../utils/test_data/globalTestData"
 
-customTest.only('', async({ page, testDataForOrder}) =>{
+customTest('', async({ page, testDataForOrder}) =>{
     console.log(testDataForOrder)
     let page_factory = new PageFactory(page);
     let login_page = page_factory.getLoginPage();
