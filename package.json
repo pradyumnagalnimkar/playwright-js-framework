@@ -7,7 +7,7 @@
     "regression": "npx playwright test --project=chromium --reporter=allure-playwright",
     "webTests": "npx playwright test --grep @Web --project=chromium --reporter=allure-playwright",
     "apiTests": "npx playwright test --grep @API --project=chromium --reporter=allure-playwright",
-    "customConfig": "npx playwright test --config playwright.config1.js --project=chromium --reporter=html" 
+    "customConfig": "npx playwright test --config playwright.config1.js --project=chromium --reporter=html"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,8 @@
   "devDependencies": {
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.2",
-    "allure-playwright": "^3.0.9"
+    "allure-playwright": "^3.0.9",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "exceljs": "^4.4.0"
