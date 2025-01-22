@@ -1,5 +1,5 @@
-const { test, request, expect } = require("@playwright/test")
-import APIUtils from "../utils/api/api_utils";
+import { test, request, expect } from "@playwright/test"
+import { APIUtils } from "../utils_ts/api/api_utils";
 
 const login_payload = {
     userEmail: "ruben.amorim+admin@gmail.com",
@@ -7,7 +7,7 @@ const login_payload = {
 }
 
 const order_paylaod = {
-    orders:[{country:"Cuba",productOrderedId:"6581ca979fd99c85e8ee7faf"}]
+    orders:[{country:"Cuba",productOrderedId:"6581cade9fd99c85e8ee7ff5"}]
 }
 
 let token;
