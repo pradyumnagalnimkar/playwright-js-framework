@@ -1,6 +1,10 @@
-const { CommonPage } = require("./common_page")
+import { Locator } from "@playwright/test"
+import { CommonPage } from "./common_page"
 
 export class DashboardPage extends CommonPage{
+    products_list: Locator
+    cart_button: Locator
+    
     constructor(page) {
         super(page)
         this.page = page
@@ -8,7 +12,7 @@ export class DashboardPage extends CommonPage{
         this.cart_button = this.page.locator("[routerlink*='cart']")
     }
 
-    async searchProductAddToCart(product_name) {
+    async searchProductAddToCart(product_name: string) {
         await this.page.waitForLoadState('networkidle')
         const number_of_products = await this.products_list.count()
         for (let i = 0; i < number_of_products; i++) {

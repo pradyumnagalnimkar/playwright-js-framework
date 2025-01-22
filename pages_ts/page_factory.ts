@@ -1,4 +1,4 @@
-import { type Page } from "@playwright/test"
+import { Page } from "@playwright/test"
 import { LoginPage } from "./login_page"
 import { DashboardPage } from "./dashboard_page"
 import { CheckoutPage } from "./checkout_page"
@@ -7,7 +7,7 @@ import { OrderListPage } from "./order_list_page"
 
 export class PageFactory{
     page: Page
-    constructor(page){
+    constructor(page: Page){
         this.page = page
     }
 

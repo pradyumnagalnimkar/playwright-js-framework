@@ -1,6 +1,19 @@
-const { CommonPage } = require("./common_page");
+import { CommonPage } from "./common_page"
+import { Locator } from "@playwright/test"
 
 export class CheckoutPage extends CommonPage{
+    checkout_button: Locator
+    expiry_date_row: Locator
+    cvv_textbox: Locator
+    card_holder_textbox: Locator
+    coupon_textbox: Locator
+    apply_coupon_button: Locator
+    applied_coupon_label: Locator
+    shipping_address_label: Locator
+    country_dropdown: Locator
+    country_dropdwn_results: Locator
+    place_order_button: Locator
+
     constructor(page){
         super(page)
         this.page = page
@@ -17,7 +30,7 @@ export class CheckoutPage extends CommonPage{
         this.place_order_button = this.page.locator(".action__submit")
     }
 
-    async checkoutOrder(expiryMonth, expiryDay, cvv_code, email, coupon_code){
+    async checkoutOrder(expiryMonth: string, expiryDay:string, cvv_code:string, email:string, coupon_code:string){
         await this.checkout_button.click()
         await this.expiry_date_row.first().selectOption({label: expiryMonth})
         await this.expiry_date_row.last().selectOption(expiryDay)
@@ -27,7 +40,7 @@ export class CheckoutPage extends CommonPage{
         await this.apply_coupon_button.click()
     }
 
-    async selectCountry(country){
+    async selectCountry(country:string){
         await this.country_dropdown.pressSequentially(country)
         await this.country_dropdwn_results.waitFor()
         const dropdownOptions = await this.country_dropdwn_results.locator("button").count()

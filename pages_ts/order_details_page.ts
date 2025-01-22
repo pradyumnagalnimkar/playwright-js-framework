@@ -1,6 +1,14 @@
-const { CommonPage } = require("./common_page");
+import { Locator } from "@playwright/test"
+import { CommonPage } from "./common_page"
 
 export class OrderDetailsPage extends CommonPage{
+
+    order_confirmation: Locator
+    order_id_label: Locator
+    order_summary_text: Locator
+    order_product_name: Locator
+    order_id_confirmation_label: Locator
+    
     constructor(page){
         super(page)
         this.order_confirmation = this.page.locator(".hero-primary")

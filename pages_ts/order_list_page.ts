@@ -1,6 +1,11 @@
-const { CommonPage } = require("./common_page");
+import { Locator } from "@playwright/test"
+import { CommonPage } from "./common_page"
 
 export class OrderListPage extends CommonPage{
+    
+    orders_button: Locator
+    orders: Locator
+    
     constructor(page){
         super(page)
         this.page = page
@@ -8,7 +13,7 @@ export class OrderListPage extends CommonPage{
         this.orders = this.page.locator("tbody tr")
     }
     
-    async viewOrdeDetails(order_id){
+    async viewOrdeDetails(order_id:any){
         this.orders_button.click()
         await this.orders.first().waitFor()
         const number_of_orders = await this.orders.count()

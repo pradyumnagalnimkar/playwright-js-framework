@@ -12,7 +12,6 @@ export class LoginPage extends CommonPage{
         this.email_textbox = this.page.getByPlaceholder("email@example.com")
         this.password_tetxbox = this.page.getByPlaceholder("enter your passsword")
         this.login_button = this.page.getByRole("button", {name:"Login"})
-        this.notification_banner = this.page.locator("#toast-container div div")
     }
 
     async loginToApp(username, password){

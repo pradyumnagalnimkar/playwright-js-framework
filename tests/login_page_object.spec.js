@@ -1,5 +1,6 @@
-const { test, expect } = require("@playwright/test")
-const { PageFactory } = require("../pages/page_factory")
+import { test, expect } from "@playwright/test"
+
+import { PageFactory } from "../pages_ts/page_factory"
 const dataset = JSON.parse(JSON.stringify(require("../utils/test_data/place_order_test_data.json")))
 
 for(const data of dataset){
