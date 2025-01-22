@@ -1,6 +1,6 @@
-import { test, expect } from "@playwright/test"
-import { PageFactory } from "../pages/page_factory"
-import { customTest } from "../utils/test_data/globalTestData"
+import { expect } from "@playwright/test"
+import { PageFactory } from "../pages_ts/page_factory"
+import { customTest } from "../utils_ts/test_data/globalTestData.ts"
 
 customTest('', async({ page, testDataForOrder}) =>{
     console.log(testDataForOrder)
