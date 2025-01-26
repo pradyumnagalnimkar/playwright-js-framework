@@ -7,7 +7,8 @@
     "regression": "npx playwright test --project=chromium --reporter=allure-playwright",
     "webTests": "npx playwright test --grep @Web --project=chromium --reporter=allure-playwright",
     "apiTests": "npx playwright test --grep @API --project=chromium --reporter=allure-playwright",
-    "customConfig": "npx playwright test --config playwright.config1.js --project=chromium --reporter=html"
+    "customConfig": "npx playwright test --config playwright.config1.js --project=chromium --reporter=html",
+    "cucumberRegression": "npx cucumber-js --tags '@Regression' --format html:cucumber-report.html --parallel 2 --retry 1 --exit"
   },
   "keywords": [],
   "author": "",

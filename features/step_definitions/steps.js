@@ -46,3 +46,16 @@ Then('Verify order is present in Orderhistory', async function () {
     expect(this.order_id.includes(actualOrderId)).toBeTruthy()
     await expect(this.order_details_page.order_product_name).toContainText("qwerty 2")
   });
+
+  Given('Login to practise application with {string} and {string}', {timeout: 10*1000}, async function (username, password) {
+    // Write code here that turns the phrase above into concrete actions
+    await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+    await this.page.locator(".form-group input[name='username']").fill(username)
+    await this.page.locator("#password").fill(password)
+    await this.page.locator("[type='submit']").click()
+  });
+
+  Then('Verify Login with invalid credentials', async function () {
+    console.log(await this.page.locator(".card-body a").nth(0).textContent())
+    await expect(this.page.locator(".card-body a").nth(0)).toContainText("iphone X")
+  });

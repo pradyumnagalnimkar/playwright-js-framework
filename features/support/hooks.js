@@ -13,7 +13,7 @@ Before(async function () {
 
 
 BeforeStep(async function () {
-    console.log('I am before step code to execute.')
+    // console.log('I am before step code to execute.')
 })
 
 AfterStep(async function ({ result }) {
@@ -24,5 +24,5 @@ AfterStep(async function ({ result }) {
 
 
 After(async function () {
-    console.log(`I am after test code to execute.`)
+    // console.log(`I am after test code to execute.`)
 })
