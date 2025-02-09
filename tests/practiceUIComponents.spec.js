@@ -58,18 +58,30 @@ test('Scenario: Switch multiple tabs', async function(){
 
 test('Scenario: Switch to alert example', async function(){
     const name = 'Pradyumna'
-    await page.locator("#name").fill(name);
+    let actualMessage = `Hello ${name}, share this practice page and share your knowledge`
     let dialogMessage;
+    await page.locator("#name").fill(name);
     page.on('dialog', function(dialog){
         dialogMessage = dialog.message();
         dialog.accept();
     });
     await page.pause();
     await page.locator("#alertbtn").click();
-    let actualMessage = `Hello ${name}, share this practice page and share your knowledge`
-    await expect(dialogMessage).toBe(actualMessage);
+    expect(dialogMessage).toBe(actualMessage);
 })
 
+test('Scenario: Switch to confirm alert example', async function(){
+    const name = 'Pradyumna Galnimkar'
+    let actualMessage = `Hello ${name}, Are you sure you want to confirm?`
+    let dialogMessage;
+    await page.locator("#name").fill(name);
+    page.on('dialog', function(dialog){
+        dialogMessage = dialog.message();
+        dialog.accept();
+    });
+    await page.locator("#confirmbtn").click();
+    expect(dialogMessage).toBe(actualMessage);
+})
 
 
 
