@@ -27,7 +27,7 @@ module.exports = defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
     headless: false,
-    timeout: 30 * 1000,
+    timeout: 10 * 1000,
     expect: {
       timeout: 5 * 1000
     },

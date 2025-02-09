@@ -1,13 +1,20 @@
-const { test,expect } = require('@playwright/test')
+const { test, expect } = require("@playwright/test")
 
-test('Handling multiple tabs example', async function({ browser }) {
-    const context = await browser.newContext()
-    const page = await context.newPage()
-    await page.goto('https://rahulshettyacademy.com/AutomationPractice/')
-    const new_tab_element = page.locator('#opentab')
-    await new_tab_element.waitFor()
-    const pagePromise = context.waitForEvent('page')
-    await new_tab_element.click()
-    const newPage = await pagePromise;
-    await expect(newPage.getByText('Access all our Courses')).toBeVisible()
+let page;
+
+test.beforeAll('Navigate to page', async function({ browser }){
+    const context = await browser.newContext();
+    page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+})
+
+test('Scenario: Test radio button', async function(){
+    const radio_option = "radio2";
+    await page.locator("#radio-btn-example").waitFor();
+    await page.locator(`input[value='${radio_option}']`).check();
+    await expect(page.locator(`input[value='${radio_option}']`)).toBeChecked();
+})
+
+test.afterAll('', async function(){
+    await page.close()
 })
