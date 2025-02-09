@@ -1,4 +1,6 @@
-const { test, expect } = require("@playwright/test")
+const { test, expect } = require("@playwright/test");
+const { name } = require("../playwright.config");
+const exp = require("constants");
 
 let page;
 
@@ -38,6 +40,38 @@ test('Scenario: Checkbox example', async function(){
     await expect(page.locator('label[for="bmw"] input')).toBeChecked();
     await expect(page.locator('label[for="honda"] input')).toBeChecked();
 })
+
+test('Scenario: Switch window example', async function(){
+    await page.getByRole('button', {name: 'Open Window'}).waitFor();
+    const [newWindow] = await Promise.all([page.waitForEvent('popup'), page.getByRole('button', {name: 'Open Window'}).click()]);
+    await expect(newWindow.locator(".main-btn").nth(0)).toContainText('Access all our Courses');
+})
+
+test('Scenario: Switch multiple tabs', async function(){
+    await page.locator("#opentab").waitFor();
+    const [newPage] = await Promise.all([page.waitForEvent('popup'), page.locator("#opentab").click()]);
+    await expect(newPage.locator(".main-btn").nth(0)).toContainText('Access all our Courses');
+    const [newWindow] = await Promise.all([page.waitForEvent('popup'), page.getByRole('button', {name: 'Open Window'}).click()]);
+    await expect(newWindow.locator(".main-btn").nth(0)).toContainText('Access all our Courses');
+    await expect(page.locator(".switch-tab")).toContainText('Switch Tab Example');
+})
+
+test('Scenario: Switch to alert example', async function(){
+    const name = 'Pradyumna'
+    await page.locator("#name").fill(name);
+    let dialogMessage;
+    page.on('dialog', function(dialog){
+        dialogMessage = dialog.message();
+        dialog.accept();
+    });
+    await page.pause();
+    await page.locator("#alertbtn").click();
+    let actualMessage = `Hello ${name}, share this practice page and share your knowledge`
+    await expect(dialogMessage).toBe(actualMessage);
+})
+
+
+
 
 test.afterAll('', async function(){
     await page.close()
