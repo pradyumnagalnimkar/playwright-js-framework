@@ -15,6 +15,15 @@ test('Scenario: Test radio button', async function(){
     await expect(page.locator(`input[value='${radio_option}']`)).toBeChecked();
 })
 
+test('Scenario: Test suggestion class example', async function () {
+    const country = 'Brazil'
+    await page.getByPlaceholder('Type to Select Countries').pressSequentially(country);
+    await page.locator(`.ui-menu-item-wrapper`).waitFor()
+    await expect(page.locator(`.ui-menu-item-wrapper`)).toContainText(country);
+    await page.locator(`.ui-menu-item-wrapper`).click()
+    await page.pause()
+})
+
 test.afterAll('', async function(){
     await page.close()
 })
