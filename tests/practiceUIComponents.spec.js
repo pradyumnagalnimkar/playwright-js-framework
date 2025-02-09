@@ -29,6 +29,16 @@ test('Scenario: Select dropdown Example', async function(){
     await page.selectOption("#dropdown-class-example", {label:option});
 })
 
+test('Scenario: Checkbox example', async function(){
+    const option = ['option1', 'option3'];
+    await page.locator("#checkbox-example").waitFor();
+    await page.locator(`input[value=${option[0]}]`).check();
+    await page.locator(`input[value=${option[1]}]`).check();
+    await expect(page.locator('label[for="benz"] input')).not.toBeChecked();
+    await expect(page.locator('label[for="bmw"] input')).toBeChecked();
+    await expect(page.locator('label[for="honda"] input')).toBeChecked();
+})
+
 test.afterAll('', async function(){
     await page.close()
 })
