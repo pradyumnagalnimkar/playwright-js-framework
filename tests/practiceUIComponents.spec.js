@@ -1,7 +1,4 @@
 const { test, expect } = require("@playwright/test");
-const { name } = require("../playwright.config");
-const exp = require("constants");
-
 let page;
 
 test.beforeAll('Navigate to page', async function({ browser }){
