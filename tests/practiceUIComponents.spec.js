@@ -21,7 +21,12 @@ test('Scenario: Test suggestion class example', async function () {
     await page.locator(`.ui-menu-item-wrapper`).waitFor()
     await expect(page.locator(`.ui-menu-item-wrapper`)).toContainText(country);
     await page.locator(`.ui-menu-item-wrapper`).click()
-    await page.pause()
+})
+
+test('Scenario: Select dropdown Example', async function(){
+    const option = "Option2"
+    await page.locator("#dropdown-class-example").waitFor();
+    await page.selectOption("#dropdown-class-example", {label:option});
 })
 
 test.afterAll('', async function(){
