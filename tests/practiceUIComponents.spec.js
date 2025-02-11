@@ -80,6 +80,18 @@ test('Scenario: Switch to confirm alert example', async function(){
     expect(dialogMessage).toBe(actualMessage);
 })
 
+test.only('Scenario: Switch to dismiss confirm alert example', async function(){
+    const name = 'Pradyumna Galnimkar'
+    let actualMessage = `Hello ${name}, Are you sure you want to confirm?`
+    let dialogMessage;
+    await page.locator("#name").fill(name);
+    page.on('dialog', function(dialog){
+        dialogMessage = dialog.message();
+        dialog.dismiss();
+    });
+    await page.locator("#confirmbtn").click();
+    expect(dialogMessage).toBe(actualMessage);
+})
 
 test('Scenario: Web table example', async function(){
     let maxPrice = -Number.MAX_VALUE;
