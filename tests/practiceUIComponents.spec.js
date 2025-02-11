@@ -81,6 +81,44 @@ test('Scenario: Switch to confirm alert example', async function(){
 })
 
 
+test('Scenario: Web table example', async function(){
+    let maxPrice = -Number.MAX_VALUE;
+    let coursename;
+    let courseprice;
+    let instructorname;
+    let table = await page.locator("//table[@name='courses']");
+    let tableRows = await table.locator("//tr").count();
+    for(let row=1;row<tableRows;row++){
+       courseprice = await table.locator("//tr").nth(row).locator('//td').nth(2).innerText();
+       if(parseInt(courseprice) > maxPrice){
+        maxPrice = courseprice;
+        coursename = await table.locator("//tr").nth(row).locator("//td").nth(1).innerText();
+        instructorname = await table.locator("//tr").nth(row).locator("//td").nth(0).innerText();
+       }
+    }
+    console.log(`Course with maximum price is ${coursename} having value of ${maxPrice} by instructor ${instructorname}.`)
+})
+
+test('Scenario: Web table fixed header', async function(){
+    let amount = -Number.MAX_VALUE;
+    let name;
+    let position;
+    let table = await page.locator("//table[@id='product']").nth(1);
+    let tablerows = await table.locator("//tr").count();
+    for(let row=1; row < tablerows; row++){
+        let currentAmount = 0;
+        position = await table.locator("//tr").nth(row).locator("//td").nth(1).innerText();
+        currentAmount = await table.locator("//tr").nth(row).locator("//td").nth(3).innerText();
+        if(position === 'Engineer'){
+            if(parseInt(currentAmount) > amount){
+                amount =  currentAmount;
+                name = await table.locator("//tr").nth(row).locator("//td").nth(0).innerText();
+            }
+        }
+    }
+    console.log(`Engineer with maximum amount is ${name} having value of ${amount}.`)
+})
+
 
 test.afterAll('', async function(){
     await page.close()
