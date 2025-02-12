@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@azure/microsoft-playwright-testing": "^1.0.0-beta.7",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.2",
     "allure-playwright": "^3.0.9",
