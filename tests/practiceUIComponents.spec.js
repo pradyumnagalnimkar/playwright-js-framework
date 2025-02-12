@@ -80,7 +80,7 @@ test('Scenario: Switch to confirm alert example', async function(){
     expect(dialogMessage).toBe(actualMessage);
 })
 
-test.only('Scenario: Switch to dismiss confirm alert example', async function(){
+test('Scenario: Switch to dismiss confirm alert example', async function(){
     const name = 'Pradyumna Galnimkar'
     let actualMessage = `Hello ${name}, Are you sure you want to confirm?`
     let dialogMessage;
