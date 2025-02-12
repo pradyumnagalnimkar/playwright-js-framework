@@ -112,25 +112,23 @@ test('Scenario: Web table example', async function(){
 })
 
 test('Scenario: Web table fixed header', async function(){
-    let amount = -Number.MAX_VALUE;
-    let name;
-    let position;
-    let table = await page.locator("//table[@id='product']").nth(1);
-    let tablerows = await table.locator("//tr").count();
-    for(let row=1; row < tablerows; row++){
-        let currentAmount = 0;
-        position = await table.locator("//tr").nth(row).locator("//td").nth(1).innerText();
-        currentAmount = await table.locator("//tr").nth(row).locator("//td").nth(3).innerText();
-        if(position === 'Engineer'){
-            if(parseInt(currentAmount) > amount){
-                amount =  currentAmount;
-                name = await table.locator("//tr").nth(row).locator("//td").nth(0).innerText();
+    let maxAmount = -Number.MAX_VALUE;
+    let engineerName;
+    const table = page.locator("#product");
+    const rows = await table.locator("tr").count();
+    
+    for (let row = 1; row < rows; row++) {
+        const position = await table.locator(`tr:nth-child(${row + 1}) td:nth-child(2)`).innerText();
+        if (position === 'Engineer') {
+            const currentAmount = parseInt(await table.locator(`tr:nth-child(${row + 1}) td:nth-child(4)`).innerText());
+            if (currentAmount > maxAmount) {
+                maxAmount = currentAmount;
+                engineerName = await table.locator(`tr:nth-child(${row + 1}) td:nth-child(1)`).innerText();
             }
         }
     }
-    console.log(`Engineer with maximum amount is ${name} having value of ${amount}.`)
+    console.log(`Engineer with maximum amount is ${engineerName} having value of ${maxAmount}.`);
 })
-
 
 test.afterAll('', async function(){
     await page.close()
