@@ -7,7 +7,7 @@ test.beforeAll('Navigate to page', async function({ browser }){
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 })
 
-test('Scenario: Test radio button', async function(){
+test.only('Scenario: Test radio button', async function(){
     const radio_option = "radio2";
     await page.locator("#radio-btn-example").waitFor();
     await page.locator(`input[value='${radio_option}']`).check();
