@@ -7,7 +7,7 @@ test.beforeAll('Navigate to page', async function({ browser }){
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 })
 
-test.only('Scenario: Test radio button', async function(){
+test('Scenario: Test radio button', async function(){
     const radio_option = "radio2";
     await page.locator("#radio-btn-example").waitFor();
     await page.locator(`input[value='${radio_option}']`).check();
@@ -22,7 +22,7 @@ test('Scenario: Test suggestion class example', async function () {
     await page.locator(`.ui-menu-item-wrapper`).click()
 })
 
-test('Scenario: Select dropdown Example', async function(){
+test.only('Scenario: Select dropdown Example', async function(){
     const option = "Option2"
     await page.locator("#dropdown-class-example").waitFor();
     await page.selectOption("#dropdown-class-example", {label:option});

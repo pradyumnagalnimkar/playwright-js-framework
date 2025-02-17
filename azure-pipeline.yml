@@ -13,13 +13,13 @@ jobs:
         displayName: Run Playwright Test
         env:
           PLAYWRIGHT_SERVICE_URL: $(PLAYWRIGHT_SERVICE_URL)
-          PLAYWRIGHT_SERVICE_RUN_ID: $(Build.DefinitionName) - $(Build.BuildNumber) - $(System.JobAttempt) - $(Build.SourceVersion)
+          PLAYWRIGHT_SERVICE_RUN_ID: $(Build.DefinitionName) - $(Build.BuildNumber) - $(System.JobAttempt)
         inputs:
           azureSubscription: 'pradyumnagalnimkar' # Service connection used to authenticate this pipeline with Azure to use the service
           scriptType: 'pscore'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            npx playwright test smart_locators.spec.js  --config=playwright.service.config.js           
+            npx playwright test practiceUIComponents.spec.js  --config=playwright.service.config.js           
           addSpnToEnvironment: true
           
  
