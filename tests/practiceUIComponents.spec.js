@@ -130,6 +130,6 @@ test('Scenario: Web table fixed header', async function(){
     console.log(`Engineer with maximum amount is ${engineerName} having value of ${maxAmount}.`);
 })
 
-// test.afterAll('', async function(){
-//     await page.close();
-// })
+test.afterAll('', async function(){
+    await page.close();
+})
