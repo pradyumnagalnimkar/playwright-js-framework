@@ -19,7 +19,7 @@ jobs:
           scriptType: 'pscore'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            npx playwright test practiceUIComponents.spec.js --config=playwright.service.config.js
+            npx playwright test practiceUIComponents.spec.js --config=playwright.service.config.js --workers 2
           addSpnToEnvironment: true
           
       - task: PublishPipelineArtifact@1

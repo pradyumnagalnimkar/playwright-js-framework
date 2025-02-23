@@ -112,7 +112,7 @@ test('Scenario: Web table example', async function(){
     console.log(`Course with maximum price is ${coursename} having value of ${maxPrice} by instructor ${instructorname}.`)
 })
 
-test.only('Scenario: Web table fixed header', async function(){
+test('Scenario: Web table fixed header', async function(){
     let maxAmount = -Number.MAX_VALUE;
     let engineerName;
     const table = page.locator("#product");
