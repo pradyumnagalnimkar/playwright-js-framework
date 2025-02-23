@@ -7,6 +7,8 @@ test.beforeAll('Navigate to page', async function({ browser }){
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 })
 
+test.describe.configure({mode: 'parallel'})
+
 test('Scenario: Test radio button', async function(){
     const radio_option = "radio2";
     await page.locator("#radio-btn-example").waitFor();
