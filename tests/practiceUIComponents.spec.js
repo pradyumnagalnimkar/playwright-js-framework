@@ -64,7 +64,6 @@ test('Scenario: Switch to alert example', async function(){
         dialogMessage = dialog.message();
         dialog.accept();
     });
-    await page.pause();
     await page.locator("#alertbtn").click();
     expect(dialogMessage).toBe(actualMessage);
 })
@@ -113,19 +112,19 @@ test('Scenario: Web table example', async function(){
     console.log(`Course with maximum price is ${coursename} having value of ${maxPrice} by instructor ${instructorname}.`)
 })
 
-test('Scenario: Web table fixed header', async function(){
+test.only('Scenario: Web table fixed header', async function(){
     let maxAmount = -Number.MAX_VALUE;
     let engineerName;
     const table = page.locator("#product");
     const rows = await table.locator("tr").count();
     
     for (let row = 1; row < rows; row++) {
-        const position = await table.locator(`tr:nth-child(${row + 1}) td:nth-child(2)`).innerText();
+        const position = await table.nth(1).locator(`//tr[${row+1}]`).locator(`//td[2]`).innerText();
         if (position === 'Engineer') {
             const currentAmount = parseInt(await table.locator(`tr:nth-child(${row + 1}) td:nth-child(4)`).innerText());
             if (currentAmount > maxAmount) {
                 maxAmount = currentAmount;
-                engineerName = await table.locator(`tr:nth-child(${row + 1}) td:nth-child(1)`).innerText();
+                engineerName = await table.nth(1).locator(`tr:nth-child(${row + 1}) td:nth-child(1)`).innerText();
             }
         }
     }
