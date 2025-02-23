@@ -19,7 +19,7 @@ jobs:
           scriptType: 'pscore'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            npx playwright test practiceUIComponents.spec.js --update-snapshots --config=playwright.service.config.js           
+            npx playwright test practiceUIComponents.spec.js --clean-results --config=playwright.service.config.js           
           addSpnToEnvironment: true
           
  
