@@ -9,20 +9,24 @@ jobs:
           script: 'npm ci'
           workingDirectory: tests/ # update accordingly
  
-      - task: AzureCLI@2
-        displayName: Run Playwright Test
+      - script: |
+          echo "Current directory:"
+          pwd
+          echo "List of files:"
+          ls -R
+        displayName: 'Print current directory and list files'
+        
+      - script: |
+          $runId = "$(Build.BuildId)-$(System.JobId)"
+          echo "Generated run ID: $runId"
+          npx playwright test practiceUIComponents.spec.js --run-id=$runId --config=playwright.service.config.js
+        displayName: 'Run Playwright Test'
         env:
           PLAYWRIGHT_SERVICE_URL: $(PLAYWRIGHT_SERVICE_URL)
           PLAYWRIGHT_SERVICE_RUN_ID: $(System.JobId)
         inputs:
           azureSubscription: 'pradyumnagalnimkar' # Service connection used to authenticate this pipeline with Azure to use the service
-          scriptType: 'pscore'
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            npx playwright test practiceUIComponents.spec.js --run-id=$(System.JobId) --config=playwright.service.config.js
-          addSpnToEnvironment: true
           
- 
       - task: PublishPipelineArtifact@1
         displayName: Upload Playwright report
         inputs:
