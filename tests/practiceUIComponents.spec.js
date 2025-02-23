@@ -24,7 +24,7 @@ test('Scenario: Test suggestion class example', async function () {
     await page.locator(`.ui-menu-item-wrapper`).click()
 })
 
-test.only('Scenario: Select dropdown Example', async function(){
+test('Scenario: Select dropdown Example', async function(){
     const option = "Option2"
     await page.locator("#dropdown-class-example").waitFor();
     await page.selectOption("#dropdown-class-example", {label:option});
