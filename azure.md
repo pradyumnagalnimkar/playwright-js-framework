@@ -23,7 +23,7 @@
  * 
  * 3. After a successful login, export the Playwright service URL:
  *      ```
- *      export PLAYWRIGHT_SERVICE_URL=wss://eastus.api.playwright.microsoft.com/accounts/eastus_X/browsers
+ *      export PLAYWRIGHT_SERVICE_URL=${PLAYWRIGHT_SERVICE_URL)
  *      ```
  * 
  * 4. Run your tests using the following command:
